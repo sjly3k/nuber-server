@@ -1,0 +1,37 @@
+{
+  "name": "nuber-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjly3k/nuber-server.git"
+  },
+  "author": "Seungjin Lee (sjly3k@naver.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjly3k/nuber-server/issues"
+  },
+  "homepage": "https://github.com/sjly3k/nuber-server#readme",
+  "scripts": {
+    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.8",
+    "@types/helmet": "^0.0.48",
+    "@types/morgan": "^1.9.1",
+    "@types/node": "^14.11.8",
+    "nodemon": "^2.0.4",
+    "ts-node": "^9.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "graphql-tools": "^6.2.4",
+    "graphql-yoga": "^1.18.3",
+    "helmet": "^4.1.1",
+    "merge-graphql-schemas": "^1.7.8",
+    "morgan": "^1.10.0"
+  }
+}
