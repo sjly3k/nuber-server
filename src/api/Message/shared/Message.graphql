@@ -1,9 +1,0 @@
-type Message {
-    id: Int!
-    text: String!
-    chat: Chat!
-    user: User!
-    userId: Int!
-    createdAt: String!
-    updatedAt: String
-}
