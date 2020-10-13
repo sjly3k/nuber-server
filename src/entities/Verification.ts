@@ -4,25 +4,28 @@ import {
     BeforeInsert,
     Column,
     CreateDateColumn,
-    Entity, ManyToOne,
+    Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
-import User from "./User";
 
+const PHONE = "PHONE"
+const EMAIL = "EMAIL"
 
 @Entity()
 class Verification extends BaseEntity {
     @PrimaryGeneratedColumn()
     id : number;
-    @Column({type : "text", enum:["PHONE", "EMAIL"]})
+    @Column({type : "text", enum:[PHONE, EMAIL]})
     target : verificationTarget;
     @Column({type : "text"})
     payload : string
     @Column({type : "text"})
     key : string
+    // @Column({type:"boolean"})
+    // used : boolean
     @Column({type:"boolean"})
-    used : boolean
+    verified: boolean;
     @CreateDateColumn()
     createdAt : string
     @UpdateDateColumn()
@@ -37,8 +40,8 @@ class Verification extends BaseEntity {
         }
     }
 
-    @ManyToOne(type => User, user => user.verifications)
-    user : User;
+    // @ManyToOne(type => User, user => user.verifications)
+    // user : User;
 }
 
 export default Verification
