@@ -1,20 +1,29 @@
 import cors from "cors"
 import {NextFunction, Response} from "express"
-import {GraphQLServer} from "graphql-yoga";
+import {GraphQLServer, PubSub} from "graphql-yoga";
 import helmet from "helmet";
 import logger from "morgan"
 import schema from "./schema";
 import decodeJWT from "./utils/decodeJWT";
 
+const MaxListeners : number = 99
+
 class App {
     public app : GraphQLServer;
+    public pubSub : any;
 
     constructor() {
+        this.pubSub = new PubSub();
+        this.pubSub.ee.setMaxListeners(MaxListeners);
         this.app = new GraphQLServer({
             schema,
+            // 이 부분 이해가 안돼네요..
             context : req => {
+                const { connection : { context = null } = {} } = req;
                 return {
-                    req : req.request
+                    req : req.request,
+                    pubSub : this.pubSub,
+                    ...context
                 }
             }
         })
