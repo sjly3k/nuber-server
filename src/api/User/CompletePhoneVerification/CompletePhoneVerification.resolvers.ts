@@ -27,7 +27,7 @@ const resolvers: Resolvers = {
           };
         } else {
           verification.verified = true;
-          verification.save();
+          await verification.save();
         }
       } catch (error) {
         return {
@@ -41,7 +41,7 @@ const resolvers: Resolvers = {
         const user = await User.findOne({ phoneNumber });
         if (user) {
           user.verifiedPhoneNumber = true;
-          user.save();
+          await user.save();
           const token = createJWT(user.id);
           return {
             ok: true,

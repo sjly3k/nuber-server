@@ -2,10 +2,11 @@ import {
   BaseEntity,
   Column,
   CreateDateColumn,
-  Entity,
+  Entity, ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+import User from "./User";
 
 @Entity()
 class Place extends BaseEntity {
@@ -13,6 +14,12 @@ class Place extends BaseEntity {
 
   @Column({ type: "text" })
   name: string;
+
+  @ManyToOne(type => User, user => user.places)
+  user: User
+
+  @Column({nullable: true})
+  userId: number;
 
   @Column({ type: "double precision", default: 0 })
   lat: number;
