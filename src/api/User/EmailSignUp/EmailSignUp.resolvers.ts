@@ -30,13 +30,11 @@ const resolvers: Resolvers = {
           })
           if (phoneVerification) {
             const newUser = await User.create({ ...args }).save();
-            console.log(newUser)
             if (newUser.email) {
               const emailVerfication = await Verification.create({
                 payload : newUser.email,
                 target : "EMAIL"
               }).save()
-              console.log(emailVerfication)
               await sendVerificationEmail(
                   newUser.fullName,
                   emailVerfication.key

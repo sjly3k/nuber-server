@@ -24,6 +24,9 @@ class Message extends BaseEntity {
   @ManyToOne(type => User, user => user.messages)
   user: User;
 
+  @Column({nullable: true})
+  chatId: number;
+
   @CreateDateColumn() createdAt: string;
 
   @UpdateDateColumn() updatedAt: string;
